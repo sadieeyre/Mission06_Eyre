@@ -1,0 +1,44 @@
+﻿@using Microsoft.EntityFrameworkCore;
+@using Mission06_Eyre.Models;
+@model List<Movie>
+
+@*     List of headings for the table of movies on the display. *@
+<table class="table table-bordered">
+    <thead class="fw-bold">
+        <tr>
+            <td>Category</td>
+            <td>Title</td>
+            <td>Year</td>
+            <td>Director</td>
+            <td>Rating</td>
+            <td>Edited</td>
+            <td>Lent To</td>
+            <td>Copied To Plex</td>
+            <td>Notes</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+    </thead>
+@*     For the body, display the variable info for each record in the database.
+    For the categories, find the number and integrate the categoryName from the other table.
+    Add a column for user to edit or delete a record.*@
+
+    <tbody>
+        @foreach (var i in Model)
+        {
+            <tr>
+                <td>@i.Category.CategoryName</td>
+                <td>@i.Title</td>
+                <td>@i.Year</td>
+                <td>@i.Director</td>
+                <td>@i.Rating</td>
+                <td>@i.Edited</td>
+                <td>@i.LentTo</td>
+                <td>@i.CopiedToPlex</td>
+                <td>@i.Notes</td>
+                <td><a class="btn btn-info" asp-controller="Home" asp-action="Edit" asp-route-id="@i.MovieId">Edit</a></td>
+                <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@i.MovieId">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
